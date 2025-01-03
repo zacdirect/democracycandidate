@@ -15,6 +15,7 @@ env:
 permissions:
   id-token: write
   contents: read
+  actions: read
 
 jobs:
   infra:
@@ -33,6 +34,7 @@ jobs:
           name: Build
           path: ./src/public
           run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
 
       - name: Pulumi Preview
         uses: ./.github/actions/pulumi
